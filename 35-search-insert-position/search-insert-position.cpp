@@ -5,14 +5,10 @@ public:
         int ans = n;
         int low = 0;
         int high = n-1;
-        while(low <= high){
-            int mid = (low + high)/2;
-            if(nums[mid] >= target){
-                ans = mid;
-                 high = mid -1;
-            }
-            else{
-                low = mid+1;
+        for(int i=0; i<n; i++){
+            if(nums[i] >= target ){
+                ans = i;
+                break;
             }
         }
         return ans;
