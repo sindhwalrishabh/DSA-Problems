@@ -8,19 +8,23 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+ // reverse the LL using Stack T.c = o(2n) and s.c = o(n)
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-    ListNode* prev = NULL;
-    ListNode* curr = head;
-    ListNode* next;
-    while(curr != NULL){
-        next = curr->next;
-        curr->next = prev;
-        prev = curr;
-        curr = next;
-        
-    }
-    return prev;
+        stack<int> st;
+        ListNode* temp = head;
+        while(temp != NULL){
+            st.push(temp->val);
+            temp = temp->next;
+        }
+        temp = head;
+        while(!st.empty()){
+            temp->val = st.top();
+            st.pop();
+            temp = temp->next;
+        }
+        return head;
     }
 };
