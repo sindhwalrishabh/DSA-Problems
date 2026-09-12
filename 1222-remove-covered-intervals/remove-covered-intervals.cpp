@@ -10,14 +10,15 @@ public:
     int removeCoveredIntervals(vector<vector<int>>& intervals) {
         sort(intervals.begin(),intervals.end(),comp);
         int n = intervals.size();
-        vector<vector<int>>result;
-        result.push_back(intervals[0]);
+        int cnt = 1;
+        int lastinterval = intervals[0][1];
         for(int i=1; i<n; i++){
-            if(result.back()[0] <= intervals[i][0] && result.back()[1] >= intervals[i][1]){
+            if( lastinterval >= intervals[i][1]){
                 continue;
             }
-        result.push_back(intervals[i]);
+            lastinterval = intervals[i][1];
+            cnt++;
         }
-        return result.size();
+        return cnt;
     }
 };
