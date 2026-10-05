@@ -1,29 +1,22 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        // choose candidate
         int n = nums.size();
-        int cnt =0;
-        int el;
-        for(int i=0; i<n; i++){
-            if(cnt == 0){
-                cnt = 1;
-                el = nums[i];
-            }
-            else if(nums[i] == el){
-                cnt++;
-            }
-            else cnt--;
+        int maxi = 0;
+        int ans = 0;
+        map<int,int>mpp;
+        for(auto it: nums)
+        {
+            mpp[it]++;
         }
-        int cnt1 = 0;
-        for(int i=0; i<n; i++){
-            if(nums[i] == el){
-                cnt1++;
+        for(auto it: mpp){
+            maxi = max(it.second,maxi);
+        }
+        for(auto it: mpp){
+            if(it.second == maxi){
+               ans = it.first;;
             }
         }
-        if(cnt1 > n/2){
-            return el;
-        }
-        return -1;
+        return ans;
     }
 };
